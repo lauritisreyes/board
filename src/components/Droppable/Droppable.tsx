@@ -10,7 +10,10 @@ interface DroppableProps {
 export const Droppable : React.FC<DroppableProps> = ({children, id}) => {
 
     const { isOver, setNodeRef } = useDroppable({
-        id: id
+        id: id,
+        data: {
+            type: 'type1'
+        }
     })
 
     useEffect( () => console.log('is over:', isOver),[isOver])

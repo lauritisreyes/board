@@ -16,6 +16,9 @@ export const Draggable : React.FC<DraggableProps> = ({children, id}) => {
         transform 
     } = useDraggable({
         id: id,
+        data: {
+            supports: ['type1', 'type2']
+        }
     })
 
     const style = transform ? {
