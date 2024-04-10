@@ -1,0 +1,20 @@
+.Board {
+    height: 400px;
+    width: 400px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-style: italic;
+    border-radius: 1rem;
+    border: 1px dashed grey;
+    &.isOver::before {
+        content: '';
+        background-color: rgba(200, 228, 255, 0.331);
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
+}
