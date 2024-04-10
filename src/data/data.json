@@ -1,0 +1,20 @@
+[
+    {
+        "id": "note-0",
+        "title": "Título 1",
+        "description": "Descripción 1",
+        "position": {
+            "left": 0,
+            "top": 0
+        }
+    },    
+    {
+        "id": "note-1",
+        "title": "Titulo 2",
+        "description": "Descripción 2",
+        "position": {
+            "left": 0,
+            "top": 0
+        }
+    }
+]

@@ -1,5 +1,12 @@
 .Item {
-    width: 40px;
-    height: 40px;
-    background-color: rgb(127, 189, 255);
+    width: 12rem;
+    height: 12rem;
+    padding: 2rem;
+    background-color: rgba(127, 189, 255, 0.557);
+    user-select: none;
+    display: flex;
+    flex-direction: column;
+    &-description {
+        color: rgb(47, 47, 49);
+    }
 }

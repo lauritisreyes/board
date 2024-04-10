@@ -1,13 +1,15 @@
 import { useDraggable } from '@dnd-kit/core'
 import './Draggable.scss'
+import { restrictToWindowEdges } from '@dnd-kit/modifiers';
 
 interface DraggableProps {
     children: any;
-    id: string
+    id: number | string;
+    position: any
 }
 
 
-export const Draggable : React.FC<DraggableProps> = ({children, id}) => {
+export const Draggable : React.FC<DraggableProps> = ({children, id, position}) => {
 
     const { 
         attributes, 
@@ -15,10 +17,7 @@ export const Draggable : React.FC<DraggableProps> = ({children, id}) => {
         setNodeRef, 
         transform 
     } = useDraggable({
-        id: id,
-        data: {
-            supports: ['type1', 'type2']
-        }
+        id: id
     })
 
     const style = transform ? {
@@ -28,7 +27,7 @@ export const Draggable : React.FC<DraggableProps> = ({children, id}) => {
     return (
         <div 
             className='Draggable'
-            style={style}
+            style={{...style, ...position}}
             ref={setNodeRef}
             {...attributes}
             {...listeners}
