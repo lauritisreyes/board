@@ -1,3 +1,43 @@
+@import './../../partials/mixins';
+
 .Draggable {
     z-index: 1;
+    position: relative;
+}
+
+.Item {
+    width: 12rem;
+    height: 12rem;
+    padding: 2rem;
+    background-color: rgb(184, 218, 255);
+    user-select: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    border: 1px solid #82B8E5;
+    &-actions {
+        margin: 0.3rem;
+        position: absolute;
+        top: 0;
+        right: 0;
+        @include flex(row, wrap, center, center);
+        .Icon-bin {
+            opacity: 0;
+        }
+    }
+    &:hover {
+        .Icon-bin {
+            opacity: 1;
+        }
+    }
+    &-description {
+        color: rgb(47, 47, 49);
+    }
+    &-delete {
+        background-color: red;
+        padding: 1rem;
+        margin: 1rem 0;
+        z-index: 10;
+    }
 }

@@ -4,13 +4,8 @@
     overflow: hidden;
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: flex-start;
     justify-content: flex-start;
     gap: 4rem;
 }
 
-.Container {
-    display: flex;
-    flex-direction: row;
-    gap: 2rem;
-}

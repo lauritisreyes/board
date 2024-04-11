@@ -18,16 +18,14 @@ const App = () => {
     const [ items, setItems ] = useState<ItemInfo[]>([])
     const [ currentItem, setCurrentItem ] = useState<null | ItemInfo>()
 
-
-
     const addNote = () => {
         console.log('add note')
         const newNote = {
             id: uuid(),
-            description: 'descripcion de prueba',
+            description: 'Write something new...',
             position: {
-                left: 600,
-                top: 0,
+                left: 200,
+                top: 100,
                 rotation: 90
             }
         }
@@ -63,6 +61,10 @@ const App = () => {
         }
     }
 
+    const handleInputChange = (e : any) => {
+        console.log('input changing', e)
+    }
+
     useEffect( () => console.log('current item', currentItem), [currentItem])
     useEffect( () => console.log('items:', items), [items])
 
@@ -76,26 +78,26 @@ const App = () => {
                     <Button onClick={addNote}/>
                     { items.map ( ({id, position, description}) =>
                         <Draggable 
-                            key={id} 
-                            id={id}
-                            position={{
-                                position: "absolute",
-                                left: `${position.left}px`,
-                                top: `${position.top}px`
-                            }}
-                            deleteNote={() => deleteNote(id)}
-                            >
-                            <Item description={description}/>
-                        </Draggable>
+                                key={id} 
+                                id={id}
+                                position={{
+                                    position: "absolute",
+                                    left: `${position.left}px`,
+                                    top: `${position.top}px`
+                                }}
+                                deleteNote={() => deleteNote(id)}
+                                description={description}
+                                handleInputChange={handleInputChange}
+                            />
                     )}
                 </Droppable>
-                <DragOverlay modifiers={[restrictToWindowEdges]}>
+                {/* <DragOverlay modifiers={[restrictToWindowEdges]}>
                     { currentItem &&
                         <Item 
                             description={currentItem?.description}
                         />
                     }
-                </DragOverlay>
+                </DragOverlay> */}
             </DndContext>
             
         </div>

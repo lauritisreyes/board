@@ -1,0 +1,15 @@
+@import './../../partials/mixins';
+
+.IconButton {
+    width: 40px;
+    height: 40px;
+    @include flex(row, wrap, center, center);
+    border-radius: 100%;
+    &:hover {
+        background-color: rgba(236, 239, 244, 0.206);
+    }
+    .Icon {
+        width: 24px;
+        height: 24px;
+    }
+}

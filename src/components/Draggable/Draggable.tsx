@@ -1,15 +1,17 @@
 import { useDraggable } from '@dnd-kit/core'
 import './Draggable.scss'
+import { IconButton } from '../Icon/Icon';
 
 interface DraggableProps {
-    children: any;
     id: string;
     position: any;
-    deleteNote: any
+    deleteNote: any;
+    description: string;
+    handleInputChange: any
 }
 
 
-export const Draggable : React.FC<DraggableProps> = ({children, id, position, deleteNote}) => {
+export const Draggable : React.FC<DraggableProps> = ({ id, position, deleteNote, handleInputChange, description}) => {
 
     const { 
         attributes, 
@@ -22,7 +24,7 @@ export const Draggable : React.FC<DraggableProps> = ({children, id, position, de
 
     const style = transform ? {
         transform: `translate3d(${transform.x}px, ${transform.y}px, 0)`,
-      } : undefined;
+    } : undefined;
     
     return (
         <div 
@@ -30,9 +32,20 @@ export const Draggable : React.FC<DraggableProps> = ({children, id, position, de
             style={{...style, ...position}}
             ref={setNodeRef}
         >
-            <button {...listeners} {...attributes}>Drag handle</button>
-            {deleteNote && <button className='Item-delete' onClick={deleteNote}>Borrar</button>}
-            {children}
+            <div className='Item'>
+                <div className='Item-actions'>
+                    <IconButton name='bin' onClick={deleteNote}/>
+                    <IconButton name='drag' {...listeners} {...attributes} />
+                </div>
+                <p className='Item-description'>{description}</p>
+                {/* <input 
+                    type="text" 
+                    name={id}
+                    value={description} 
+                    onChange={handleInputChange} 
+                    placeholder="Escribe algo..."
+                /> */}
+            </div>
         </div>
     )
 }
