@@ -1,6 +1,6 @@
 import { DndContext, DragOverlay, MouseSensor, TouchSensor, useSensor, useSensors } from '@dnd-kit/core'
 import './App.scss'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { Droppable } from './components/Droppable/Droppable'
 import { Draggable } from './components/Draggable/Draggable'
 import {createSnapModifier, restrictToWindowEdges} from '@dnd-kit/modifiers';
