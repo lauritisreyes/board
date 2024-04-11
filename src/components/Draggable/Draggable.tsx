@@ -3,12 +3,13 @@ import './Draggable.scss'
 
 interface DraggableProps {
     children: any;
-    id: number | string;
-    position: any
+    id: string;
+    position: any;
+    deleteNote: any
 }
 
 
-export const Draggable : React.FC<DraggableProps> = ({children, id, position}) => {
+export const Draggable : React.FC<DraggableProps> = ({children, id, position, deleteNote}) => {
 
     const { 
         attributes, 
@@ -28,8 +29,10 @@ export const Draggable : React.FC<DraggableProps> = ({children, id, position}) =
             className='Draggable'
             style={{...style, ...position}}
             ref={setNodeRef}
-            {...attributes}
-            {...listeners}
-        >{children}</div>
+        >
+            <button {...listeners} {...attributes}>Drag handle</button>
+            {deleteNote && <button className='Item-delete' onClick={deleteNote}>Borrar</button>}
+            {children}
+        </div>
     )
 }

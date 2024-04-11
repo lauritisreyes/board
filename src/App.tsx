@@ -1,31 +1,58 @@
 import { DndContext, DragOverlay } from '@dnd-kit/core'
 import './App.scss'
 import { useEffect, useState } from 'react'
-import ItemsData from './data/data.json'
 import { Droppable } from './components/Droppable/Droppable'
 import { Draggable } from './components/Draggable/Draggable'
 import { Item } from './components/Item/Item'
 import { restrictToWindowEdges } from '@dnd-kit/modifiers'
 import {createSnapModifier} from '@dnd-kit/modifiers';
+import { Button } from './components/Button/Button'
+import { ItemInfo } from './utils/interfaces'
+import { v4 as uuid } from "uuid";
 
 
 const App = () => {
 
 
 
-    const [ items, setItems ] = useState( ItemsData )
-    const [ currentId, setCurrentId ] = useState<any | number>(1)
+    const [ items, setItems ] = useState<ItemInfo[]>([])
+    const [ currentItem, setCurrentItem ] = useState<null | ItemInfo>()
+
+
+
+    const addNote = () => {
+        console.log('add note')
+        const newNote = {
+            id: uuid(),
+            description: 'descripcion de prueba',
+            position: {
+                left: 600,
+                top: 0,
+                rotation: 90
+            }
+        }
+        setItems( prevItems => [...prevItems, newNote] )
+    }
+
+    const deleteNote = ( id: string ) => {
+        console.log('delete item:', id)
+        const updatedItems = items.filter((item) => item.id !== id)
+        if (updatedItems != items) {setItems(updatedItems) }
+    }
+
+    const handleDragStart = (e : any) => {
+        const item = items.find((x) => x.id === e.active.id)
+        setCurrentItem(item)
+    }
 
     const handleDragEnd = (e : any) => {
 
-        setCurrentId(e.active.id)
-
         const item = items.find((x) => x.id === e.active.id)
-        console.log('this item', item)
+        setCurrentItem(null)
 
         if (item) {
             item.position.left += e.delta.x;
-            item.position.top += e.delta.y;
+            item.position.top += e.delta.y
     
             const updatedItems = items.map((info) => {
               if (info.id === item.id) return item
@@ -36,7 +63,7 @@ const App = () => {
         }
     }
 
-    useEffect( () => console.log('current id', currentId), [currentId])
+    useEffect( () => console.log('current item', currentItem), [currentItem])
     useEffect( () => console.log('items:', items), [items])
 
     const gridSize = 20;
@@ -44,9 +71,10 @@ const App = () => {
 
     return (
         <div className='App'>
-            <DndContext modifiers={[snapToGridModifier]} onDragEnd={handleDragEnd}>
-                <Droppable id='board'>
-                    { ItemsData.map ( ({id, position, title, description}) =>
+            <DndContext modifiers={[snapToGridModifier]} onDragEnd={handleDragEnd} onDragStart={handleDragStart}>
+                <Droppable id={'board'}>
+                    <Button onClick={addNote}/>
+                    { items.map ( ({id, position, description}) =>
                         <Draggable 
                             key={id} 
                             id={id}
@@ -55,16 +83,18 @@ const App = () => {
                                 left: `${position.left}px`,
                                 top: `${position.top}px`
                             }}
+                            deleteNote={() => deleteNote(id)}
                             >
-                            <Item title={title} description={description}/>
+                            <Item description={description}/>
                         </Draggable>
                     )}
                 </Droppable>
                 <DragOverlay modifiers={[restrictToWindowEdges]}>
-                    <Item 
-                        title="prueba"
-                        description="subtitulo prueba"
-                    />
+                    { currentItem &&
+                        <Item 
+                            description={currentItem?.description}
+                        />
+                    }
                 </DragOverlay>
             </DndContext>
             
