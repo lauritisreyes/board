@@ -68,12 +68,7 @@ const App = () => {
         }
     })
 
-    const touchSensor = useSensor(TouchSensor, {
-        activationConstraint: {
-          delay: 250,
-          tolerance: 5,
-        }
-    })
+    const touchSensor = useSensor(TouchSensor)
 
     const sensors = useSensors(
         mouseSensor,
