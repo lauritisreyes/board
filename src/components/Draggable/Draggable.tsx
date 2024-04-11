@@ -35,7 +35,7 @@ export const Draggable : React.FC<DraggableProps> = ({ id, position, deleteNote,
         >
             <div className='Item'>
                 <div className='Item-actions'>
-                    { type === 'menu-item' && <IconButton name='bin' onClick={deleteNote}/> }
+                    { type != 'menu-card' && <IconButton name='bin' onClick={deleteNote}/> }
                     <IconButton name='drag' {...listeners} {...attributes} />
                 </div>
                 <p className='Item-description'>{description}</p>
