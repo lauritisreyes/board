@@ -1,6 +1,5 @@
 import { useDraggable } from '@dnd-kit/core'
 import './Draggable.scss'
-import { restrictToWindowEdges } from '@dnd-kit/modifiers';
 
 interface DraggableProps {
     children: any;

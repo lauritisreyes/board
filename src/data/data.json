@@ -1,20 +1,32 @@
 [
     {
-        "id": "note-0",
+        "id": 1,
         "title": "Título 1",
         "description": "Descripción 1",
         "position": {
             "left": 0,
-            "top": 0
+            "top": 0,
+            "rotation": 90
         }
     },    
     {
-        "id": "note-1",
+        "id": 0,
         "title": "Titulo 2",
         "description": "Descripción 2",
         "position": {
-            "left": 0,
-            "top": 0
+            "left": 300,
+            "top": 0,
+            "rotation": 90
+        }
+    },    
+    {
+        "id": 2,
+        "title": "Titulo 3",
+        "description": "Descripción 3",
+        "position": {
+            "left": 600,
+            "top": 0,
+            "rotation": 90
         }
     }
 ]
