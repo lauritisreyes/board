@@ -92,7 +92,7 @@ const App = () => {
                 <DragOverlay modifiers={[restrictToWindowEdges]}>
                     { currentItem &&
                         <Item 
-                            description={currentItem?.description}
+                            description={'Drop me elsewhere'}
                         />
                     }
                 </DragOverlay>

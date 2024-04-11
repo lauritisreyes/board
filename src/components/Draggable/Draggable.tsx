@@ -39,6 +39,7 @@ export const Draggable : React.FC<DraggableProps> = ({ id, position, deleteNote,
                     <IconButton name='drag' {...listeners} {...attributes} />
                 </div>
                 <p className='Item-description'>{description}</p>
+                { type != 'menu-card' && <textarea className='Item-textarea' placeholder='Escribe algo nuevo...'></textarea>}
             </div>
         </div>
     )
