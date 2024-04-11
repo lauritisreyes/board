@@ -11,6 +11,11 @@ Currently working on it...
 
 This is a project to practice how to drag and drop elements in React. I am using react dnd-kit.
 
+Actions:
+- Drag and drop the card to create new ones
+- Move the cards by dragging and dropping them in new positions
+- Delete the cards
+
 ![Screenshoot](https://github.com/lauritisreyes/board/blob/main/src/assets/Board.png)
 
 ## Autor ✒️
