@@ -1,4 +1,4 @@
-import { DndContext, DragOverlay } from '@dnd-kit/core'
+import { DndContext, DragOverlay, MouseSensor, TouchSensor, useSensor, useSensors } from '@dnd-kit/core'
 import './App.scss'
 import { useEffect, useState } from 'react'
 import { Droppable } from './components/Droppable/Droppable'
@@ -62,15 +62,36 @@ const App = () => {
         }
     }
 
-    useEffect( () => console.log('current item', currentItem), [currentItem])
-    useEffect( () => console.log('items:', items), [items])
+    const mouseSensor = useSensor(MouseSensor, {
+        activationConstraint: {
+          distance: 20,
+        }
+    })
+
+    const touchSensor = useSensor(TouchSensor, {
+        activationConstraint: {
+          delay: 250,
+          tolerance: 5,
+        }
+    })
+
+    const sensors = useSensors(
+        mouseSensor,
+        touchSensor
+    );
+
 
     const gridSize = 20;
     const snapToGridModifier = createSnapModifier(gridSize);
 
     return (
         <div className='App'>
-            <DndContext modifiers={[snapToGridModifier]} onDragEnd={handleDragEnd} onDragStart={handleDragStart}>
+            <DndContext 
+                modifiers={[snapToGridModifier]} 
+                onDragEnd={handleDragEnd} 
+                onDragStart={handleDragStart} 
+                sensors={sensors}
+            >
                 <DragOverlay modifiers={[restrictToWindowEdges]}>
                     { currentItem &&
                         <Item 
@@ -89,7 +110,7 @@ const App = () => {
                             top: `30px`
                         }}
                         deleteNote={() => deleteNote('card-type-1')}
-                        description={'Drag to create new cards'}
+                        description={'Drag & Drop to create new cards'}
                     />
                 </div>
                 <Droppable id={'board'}>

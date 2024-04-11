@@ -18,6 +18,7 @@
     justify-content: center;
     flex-direction: column;
     border: 1px solid #82B8E5;
+    border-radius: 1rem;
     text-align: center;
     color: #335a79;
     &-actions {
@@ -39,7 +40,6 @@
         color: rgb(47, 47, 49);
     }
     &-delete {
-        background-color: red;
         padding: 1rem;
         margin: 1rem 0;
         z-index: 10;
