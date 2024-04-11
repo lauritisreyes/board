@@ -11,8 +11,6 @@ import { Item } from './components/Item/Item'
 
 const App = () => {
 
-
-
     const [ items, setItems ] = useState<ItemInfo[]>([])
     const [ currentItem, setCurrentItem ] = useState<null | ItemInfo>()
 
@@ -106,7 +104,7 @@ const App = () => {
                         position={{
                             position: "absolute",
                             left: `0px`,
-                            top: `30px`
+                            top: `0px`
                         }}
                         deleteNote={() => deleteNote('card-type-1')}
                         description={'Drag & Drop to create new cards'}
