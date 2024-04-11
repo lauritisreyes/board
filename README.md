@@ -5,7 +5,7 @@
 Currently working on it...
 
 ## Visit the Live Site
-- [https://games-workshop-redesign.netlify.app](https://games-workshop-redesign.netlify.app)
+- [https://main--drag-and-drop-board.netlify.app/](https://main--drag-and-drop-board.netlify.app/)
 
 ## Description 📑
 
