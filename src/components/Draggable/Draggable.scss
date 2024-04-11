@@ -3,6 +3,8 @@
 .Draggable {
     z-index: 1;
     position: relative;
+    top: 0;
+    left: 0;
 }
 
 .Item {
@@ -16,6 +18,8 @@
     justify-content: center;
     flex-direction: column;
     border: 1px solid #82B8E5;
+    text-align: center;
+    color: #335a79;
     &-actions {
         margin: 0.3rem;
         position: absolute;

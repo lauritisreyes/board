@@ -26,6 +26,7 @@ export const Droppable : React.FC<DroppableProps> = ({children, id}) => {
             onDrop={handleDrop}
         >
             {children}
+            {isOver && <h2>Drop Here</h2>}
         </div>
     )
 }

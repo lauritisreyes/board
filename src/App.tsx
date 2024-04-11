@@ -51,7 +51,7 @@ const App = () => {
             console.log('eee')
             const newNote = {
                 id: uuid(),
-                description: 'Write something new...',
+                description: '',
                 position: {
                     left: e.delta.x,
                     top: e.delta.y,
@@ -89,7 +89,7 @@ const App = () => {
                             top: `30px`
                         }}
                         deleteNote={() => deleteNote('card-type-1')}
-                        description={'description'}
+                        description={'Drag to create new cards'}
                     />
                 </div>
                 <Droppable id={'board'}>
