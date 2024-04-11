@@ -39,25 +39,42 @@ const App = () => {
     }
 
     const handleDragStart = (e : any) => {
+        console.log('DRAGSTART', e)
         const item = items.find((x) => x.id === e.active.id)
         setCurrentItem(item)
     }
 
     const handleDragEnd = (e : any) => {
 
+        console.log('DRAGEND', e, e.active.data.current.type)
+
         const item = items.find((x) => x.id === e.active.id)
         setCurrentItem(null)
 
-        if (item) {
-            item.position.left += e.delta.x;
-            item.position.top += e.delta.y
-    
-            const updatedItems = items.map((info) => {
-              if (info.id === item.id) return item
-              return info
-            })
-    
-            setItems(updatedItems);
+        if (e.active.data.current.type === 'board-card') {
+            if (item) {
+                item.position.left += e.delta.x;
+                item.position.top += e.delta.y
+        
+                const updatedItems = items.map((info) => {
+                  if (info.id === item.id) return item
+                  return info
+                })
+        
+                setItems(updatedItems);
+            }
+        } else if (e.active.data.current.type === 'menu-card') {
+            console.log('eee')
+            const newNote = {
+                id: uuid(),
+                description: 'Write something new...',
+                position: {
+                    left: e.delta.x,
+                    top: e.delta.y,
+                    rotation: 0
+                }
+            }
+            setItems( prevItems => [...prevItems, newNote] )
         }
     }
 
@@ -74,10 +91,25 @@ const App = () => {
     return (
         <div className='App'>
             <DndContext modifiers={[snapToGridModifier]} onDragEnd={handleDragEnd} onDragStart={handleDragStart}>
+                <div className='Menu'>
+                    <Draggable 
+                        type='menu-card'
+                        key={'card-type-1'} 
+                        id={'card-type-1'}
+                        position={{
+                            position: "absolute",
+                            left: `0px`,
+                            top: `30px`
+                        }}
+                        deleteNote={() => deleteNote('card-type-1')}
+                        description={'description'}
+                        handleInputChange={handleInputChange}
+                    />
+                </div>
                 <Droppable id={'board'}>
-                    <Button onClick={addNote}/>
                     { items.map ( ({id, position, description}) =>
                         <Draggable 
+                                type='board-card'
                                 key={id} 
                                 id={id}
                                 position={{

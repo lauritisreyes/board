@@ -3,9 +3,18 @@
     height: 100vh;
     overflow: hidden;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: flex-start;
     justify-content: flex-start;
     gap: 4rem;
 }
 
+.Menu {
+    background-color: white;
+    width: 20rem;
+    height: 100vh;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    z-index: 10;
+}
