@@ -1,12 +1,9 @@
-import { DndContext, DragOverlay } from '@dnd-kit/core'
+import { DndContext } from '@dnd-kit/core'
 import './App.scss'
 import { useEffect, useState } from 'react'
 import { Droppable } from './components/Droppable/Droppable'
 import { Draggable } from './components/Draggable/Draggable'
-import { Item } from './components/Item/Item'
-import { restrictToWindowEdges } from '@dnd-kit/modifiers'
 import {createSnapModifier} from '@dnd-kit/modifiers';
-import { Button } from './components/Button/Button'
 import { ItemInfo } from './utils/interfaces'
 import { v4 as uuid } from "uuid";
 
@@ -109,18 +106,18 @@ const App = () => {
                 <Droppable id={'board'}>
                     { items.map ( ({id, position, description}) =>
                         <Draggable 
-                                type='board-card'
-                                key={id} 
-                                id={id}
-                                position={{
-                                    position: "absolute",
-                                    left: `${position.left}px`,
-                                    top: `${position.top}px`
-                                }}
-                                deleteNote={() => deleteNote(id)}
-                                description={description}
-                                handleInputChange={handleInputChange}
-                            />
+                            type='board-card'
+                            key={id} 
+                            id={id}
+                            position={{
+                                position: "absolute",
+                                left: `${position.left}px`,
+                                top: `${position.top}px`
+                            }}
+                            deleteNote={() => deleteNote(id)}
+                            description={description}
+                            handleInputChange={handleInputChange}
+                        />
                     )}
                 </Droppable>
                 {/* <DragOverlay modifiers={[restrictToWindowEdges]}>
