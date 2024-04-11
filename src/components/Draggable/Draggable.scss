@@ -31,6 +31,7 @@
             opacity: 0;
         }
     }
+    touch-action: manipulation;
     &:hover {
         .Icon-bin {
             opacity: 1;
