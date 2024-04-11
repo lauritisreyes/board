@@ -1,11 +1,12 @@
-import { DndContext } from '@dnd-kit/core'
+import { DndContext, DragOverlay } from '@dnd-kit/core'
 import './App.scss'
 import { useEffect, useState } from 'react'
 import { Droppable } from './components/Droppable/Droppable'
 import { Draggable } from './components/Draggable/Draggable'
-import {createSnapModifier} from '@dnd-kit/modifiers';
+import {createSnapModifier, restrictToWindowEdges} from '@dnd-kit/modifiers';
 import { ItemInfo } from './utils/interfaces'
 import { v4 as uuid } from "uuid";
+import { Item } from './components/Item/Item'
 
 
 const App = () => {
@@ -14,20 +15,6 @@ const App = () => {
 
     const [ items, setItems ] = useState<ItemInfo[]>([])
     const [ currentItem, setCurrentItem ] = useState<null | ItemInfo>()
-
-    const addNote = () => {
-        console.log('add note')
-        const newNote = {
-            id: uuid(),
-            description: 'Write something new...',
-            position: {
-                left: 200,
-                top: 100,
-                rotation: 90
-            }
-        }
-        setItems( prevItems => [...prevItems, newNote] )
-    }
 
     const deleteNote = ( id: string ) => {
         console.log('delete item:', id)
@@ -75,10 +62,6 @@ const App = () => {
         }
     }
 
-    const handleInputChange = (e : any) => {
-        console.log('input changing', e)
-    }
-
     useEffect( () => console.log('current item', currentItem), [currentItem])
     useEffect( () => console.log('items:', items), [items])
 
@@ -88,6 +71,13 @@ const App = () => {
     return (
         <div className='App'>
             <DndContext modifiers={[snapToGridModifier]} onDragEnd={handleDragEnd} onDragStart={handleDragStart}>
+                <DragOverlay modifiers={[restrictToWindowEdges]}>
+                    { currentItem &&
+                        <Item 
+                            description={currentItem?.description}
+                        />
+                    }
+                </DragOverlay>
                 <div className='Menu'>
                     <Draggable 
                         type='menu-card'
@@ -100,7 +90,6 @@ const App = () => {
                         }}
                         deleteNote={() => deleteNote('card-type-1')}
                         description={'description'}
-                        handleInputChange={handleInputChange}
                     />
                 </div>
                 <Droppable id={'board'}>
@@ -116,17 +105,9 @@ const App = () => {
                             }}
                             deleteNote={() => deleteNote(id)}
                             description={description}
-                            handleInputChange={handleInputChange}
                         />
                     )}
                 </Droppable>
-                {/* <DragOverlay modifiers={[restrictToWindowEdges]}>
-                    { currentItem &&
-                        <Item 
-                            description={currentItem?.description}
-                        />
-                    }
-                </DragOverlay> */}
             </DndContext>
             
         </div>

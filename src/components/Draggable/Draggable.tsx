@@ -7,12 +7,11 @@ interface DraggableProps {
     position: any;
     deleteNote: any;
     description: string;
-    handleInputChange: any;
     type: string
 }
 
 
-export const Draggable : React.FC<DraggableProps> = ({ id, position, deleteNote, handleInputChange, description, type}) => {
+export const Draggable : React.FC<DraggableProps> = ({ id, position, deleteNote, description, type}) => {
 
     const { 
         attributes, 
@@ -40,13 +39,6 @@ export const Draggable : React.FC<DraggableProps> = ({ id, position, deleteNote,
                     <IconButton name='drag' {...listeners} {...attributes} />
                 </div>
                 <p className='Item-description'>{description}</p>
-                {/* <input 
-                    type="text" 
-                    name={id}
-                    value={description} 
-                    onChange={handleInputChange} 
-                    placeholder="Escribe algo..."
-                /> */}
             </div>
         </div>
     )
