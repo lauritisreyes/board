@@ -16,7 +16,7 @@ Actions:
 - Move the cards by dragging and dropping them in new positions
 - Delete the cards
 
-![Screenshoot](https://github.com/lauritisreyes/board/blob/main/src/assets/Board.png)
+![Screenshoot](https://github.com/lauritisreyes/board/blob/main/src/assets/Board.jpg)
 
 ## Autor ✒️
 **Laura Reyes**
