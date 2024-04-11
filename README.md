@@ -11,7 +11,7 @@ Currently working on it...
 
 This is a project to practice how to drag and drop elements in React. I am using react dnd-kit.
 
-![Screenshoot](https://github.com/lauritisreyes/porfolio/blob/main/src/assets/Board.png)
+![Screenshoot](https://github.com/lauritisreyes/board/blob/main/src/assets/Board.png)
 
 ## Autor ✒️
 **Laura Reyes**
